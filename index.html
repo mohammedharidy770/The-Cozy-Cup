@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Cozy Cup Café - Dark</title>
+
+    <!-- ===== Google Fonts ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- ===== Tailwind CSS CDN ===== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ===== Font Awesome CDN ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- ===== AOS.js CDN ===== -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- ===== Custom CSS ===== -->
+    <style>
+        /* ============================================================
+                   ROOT VARIABLES (DARK THEME DEFAULT)
+                   ============================================================ */
+        :root {
+            --bg-main: #1A110C;
+            --bg-secondary: #2C1E16;
+            --bg-card: #241811;
+            --border-color: #3D2B1F;
+            --text-primary: #F5EDE4;
+            --text-secondary: #C4B5A5;
+            --color-primary: #C9A96E;
+            --color-primary-hover: #DBC18A;
+            --color-secondary: #8B5E3C;
+            --color-error: #E74C3C;
+            --color-success: #2ECC71;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --font-ar: 'Cairo', sans-serif;
+            --font-en-display: 'Playfair Display', serif;
+            --font-en-body: 'Lato', sans-serif;
+            --transition: 0.3s ease;
+            --glass-bg: rgba(26, 17, 12, 0.85);
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-main: #F5F0E8;
+            --bg-secondary: #E8DCC8;
+            --bg-card: #FFFFFF;
+            --border-color: rgba(139, 94, 60, 0.15);
+            --text-primary: #3D2B1F;
+            --text-secondary: #6B5B4F;
+            --color-primary: #8B5E3C;
+            --color-primary-hover: #A97A56;
+            --color-secondary: #C9A96E;
+            --shadow-color: rgba(61, 43, 31, 0.08);
+            --glass-bg: rgba(245, 240, 232, 0.92);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-ar);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            transition: background-color var(--transition), color var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* ---- RTL / LTR overrides ---- */
+        html[dir="ltr"] body {
+            font-family: var(--font-en-body);
+        }
+        html[dir="ltr"] h1,
+        html[dir="ltr"] h2,
+        html[dir="ltr"] h3,
+        html[dir="ltr"] .font-display {
+            font-family: var(--font-en-display);
+        }
+        html[dir="rtl"] h1,
+        html[dir="rtl"] h2,
+        html[dir="rtl"] h3,
+        html[dir="rtl"] .font-display {
+            font-family: var(--font-ar);
+        }
+
+        /* ============================================================
+                   CUSTOM UTILITY CLASSES
+                   ============================================================ */
+        .bg-warm {
+            background-color: var(--bg-main);
+        }
+        .bg-warm-secondary {
+            background-color: var(--bg-secondary);
+        }
+        .text-coffee {
+            color: var(--text-primary);
+        }
+        .text-coffee-light {
+            color: var(--text-secondary);
+        }
+        .text-primary-brand {
+            color: var(--color-primary);
+        }
+        .text-gold {
+            color: var(--color-primary);
+        }
+        .bg-primary-brand {
+            background-color: var(--color-primary);
+        }
+        .bg-gold {
+            background-color: var(--color-primary);
+        }
+        .border-gold {
+            border-color: var(--color-primary);
+        }
+        .hover-bg-primary:hover {
+            background-color: var(--color-primary);
+            color: var(--bg-main);
+        }
+        .hover-text-gold:hover {
+            color: var(--color-primary);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--bg-main);
+            padding: 0.6rem 1.8rem;
+            border-radius: 9999px;
+            transition: all var(--transition);
+            border: 2px solid var(--color-primary);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-primary);
+        }
+        .btn-gold {
+            background-color: var(--color-primary);
+            color: var(--bg-main);
+            padding: 0.6rem 1.8rem;
+            border-radius: 9999px;
+            transition: all var(--transition);
+            border: 2px solid var(--color-primary);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--color-primary);
+        }
+        .btn-outline-primary {
+            background-color: transparent;
+            color: var(--color-primary);
+            padding: 0.6rem 1.8rem;
+            border-radius: 9999px;
+            transition: all var(--transition);
+            border: 2px solid var(--color-primary);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-outline-primary:hover {
+            background-color: var(--color-primary);
+            color: var(--bg-main);
+        }
+
+        /* ============================================================
+                   NAVBAR
+                   ============================================================ */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all var(--transition);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-scrolled {
+            box-shadow: 0 4px 20px var(--shadow-color);
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+            padding: 0.5rem 0.25rem;
+            transition: color var(--transition);
+            color: var(--text-secondary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width var(--transition);
+        }
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 0.5rem;
+        }
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        .hero {
+            min-height: 85vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(26, 17, 12, 0.60) 100%),
+                url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 700px;
+            padding: 2rem;
+        }
+        .hero-title {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .hero-title .gold {
+            color: var(--color-primary);
+        }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 1rem;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+        .hero-actions {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* ============================================================
+                   SECTIONS
+                   ============================================================ */
+        .section-padding {
+            padding: 5rem 0;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* Feature cards */
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            transition: all var(--transition);
+            border: 1px solid var(--border-color);
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px var(--shadow-color);
+            border-color: var(--color-primary);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+                   MENU / PRODUCT CARDS
+                   ============================================================ */
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            transition: all var(--transition);
+            border: 1px solid var(--border-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px var(--shadow-color);
+            border-color: var(--color-primary);
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform var(--transition);
+        }
+        .product-card:hover img {
+            transform: scale(1.02);
+        }
+        .product-body {
+            padding: 1.25rem 1.25rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-body h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .product-body .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0.25rem 0 0.5rem;
+        }
+        .product-body .desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            flex: 1;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        .product-body .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .product-body .qty-control button {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-body .qty-control button:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        .product-body .qty-control span {
+            font-weight: 700;
+            min-width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .product-body .btn-add {
+            margin-top: 0.75rem;
+            width: 100%;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .filter-tab {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 0.95rem;
+        }
+        .filter-tab:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        .filter-tab.active {
+            background: var(--color-primary);
+            color: var(--bg-main);
+            border-color: var(--color-primary);
+        }
+
+        /* Search Box */
+        .search-box {
+            max-width: 400px;
+            margin: 0 auto 1.5rem auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 3rem;
+            border-radius: 9999px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.15);
+        }
+        .search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        html[dir="rtl"] .search-box i {
+            left: auto;
+            right: 1.2rem;
+        }
+        html[dir="rtl"] .search-box input {
+            padding: 0.7rem 3rem 0.7rem 1rem;
+        }
+
+        /* ============================================================
+                   CART DRAWER
+                   ============================================================ */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition);
+        }
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 420px;
+            max-width: 100vw;
+            background: var(--bg-card);
+            z-index: 2100;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: -8px 0 40px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            border-right: 1px solid var(--border-color);
+        }
+        html[dir="rtl"] .cart-drawer {
+            left: auto;
+            right: 0;
+            transform: translateX(100%);
+            border-right: none;
+            border-left: 1px solid var(--border-color);
+        }
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .cart-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .cart-drawer-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color var(--transition);
+        }
+        .cart-close:hover {
+            color: var(--color-error);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cart-item img {
+            width: 56px;
+            height: 56px;
+            border-radius: 0.75rem;
+            object-fit: cover;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-info h5 {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .cart-item-info .price-sm {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cart-item-actions button {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+        .cart-item-actions button:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        .cart-item-actions span {
+            font-weight: 700;
+            min-width: 20px;
+            text-align: center;
+        }
+        .cart-item-remove {
+            color: var(--text-secondary);
+            background: none !important;
+            border: none !important;
+            font-size: 1rem;
+        }
+        .cart-item-remove:hover {
+            color: var(--color-error) !important;
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .cart-empty {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 3rem 0;
+        }
+        .cart-empty i {
+            font-size: 3rem;
+            color: var(--border-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* ============================================================
+                   FORMS
+                   ============================================================ */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 0.75rem;
+            border: 2px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-primary);
+            transition: all var(--transition);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.15);
+        }
+        .form-control.error {
+            border-color: var(--color-error);
+        }
+        .form-error {
+            color: var(--color-error);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        .form-error.show {
+            display: block;
+        }
+
+        .form-card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ============================================================
+                   BRANCHES
+                   ============================================================ */
+        .branch-card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+            height: 100%;
+        }
+        .branch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px var(--shadow-color);
+            border-color: var(--color-primary);
+        }
+        .branch-card h4 {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .branch-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .branch-card p i {
+            color: var(--color-primary);
+            width: 1.2rem;
+        }
+
+        /* ============================================================
+                   TEAM
+                   ============================================================ */
+        .team-card {
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--border-color);
+        }
+        .team-card h4 {
+            font-weight: 700;
+        }
+        .team-card .role {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+                   NEWSLETTER
+                   ============================================================ */
+        .newsletter-box {
+            background: var(--color-primary);
+            border-radius: 2rem;
+            padding: 3rem 2.5rem;
+            color: var(--bg-main);
+            text-align: center;
+        }
+        .newsletter-box h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .newsletter-box p {
+            opacity: 0.85;
+            margin: 0.5rem 0 1.5rem;
+        }
+        .newsletter-box .form-control {
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--bg-main);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .newsletter-box .form-control::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .newsletter-box .btn-gold {
+            background: var(--bg-main);
+            border-color: var(--bg-main);
+            color: var(--color-primary);
+        }
+        .newsletter-box .btn-gold:hover {
+            background: transparent;
+            color: var(--bg-main);
+            border-color: var(--bg-main);
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            background: #0D0806;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color var(--transition);
+        }
+        .footer a:hover {
+            color: var(--color-primary);
+        }
+        .footer h4 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .footer .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all var(--transition);
+            margin-left: 0.5rem;
+            color: #fff;
+        }
+        .footer .social-links a:hover {
+            background: var(--color-primary);
+            color: var(--bg-main);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* ============================================================
+                   LANGUAGE TOGGLE & THEME TOGGLE
+                   ============================================================ */
+        .lang-toggle,
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            padding: 0.4rem 0.9rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .lang-toggle:hover,
+        .theme-toggle:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* ============================================================
+                   SCROLL TO TOP
+                   ============================================================ */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 900;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: var(--bg-main);
+            border: none;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #scrollTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #scrollTopBtn:hover {
+            transform: scale(1.1);
+            background: var(--color-primary-hover);
+        }
+        html[dir="rtl"] #scrollTopBtn {
+            right: auto;
+            left: 2rem;
+        }
+
+        /* ============================================================
+                   PAGE SECTIONS (SPA)
+                   ============================================================ */
+        .page-section {
+            display: none;
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 768px) {
+            .navbar .desktop-nav {
+                display: none;
+            }
+            .navbar .mobile-toggle {
+                display: flex;
+            }
+            .hero {
+                min-height: 70vh;
+                background-position: 60% center;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .section-padding {
+                padding: 3rem 0;
+            }
+            .form-card {
+                padding: 1.5rem;
+            }
+            .newsletter-box {
+                padding: 2rem 1.5rem;
+            }
+            .cart-drawer {
+                width: 100%;
+                max-width: 100vw;
+                border-radius: 0;
+                padding: 1rem;
+            }
+            .filter-tabs {
+                gap: 0.35rem;
+            }
+            .filter-tab {
+                padding: 0.4rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .navbar .mobile-toggle {
+                display: none;
+            }
+            .navbar .desktop-nav {
+                display: flex;
+            }
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-sub {
+                font-size: 1rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .hero-actions .btn-primary,
+            .hero-actions .btn-outline-primary {
+                width: 100%;
+                justify-content: center;
+            }
+            .product-card img {
+                height: 160px;
+            }
+            .search-box {
+                max-width: 100%;
+            }
+            .cart-drawer {
+                padding: 0.75rem;
+            }
+            .cart-item {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Scrollbar styling */
+        .cart-items::-webkit-scrollbar {
+            width: 4px;
+        }
+        .cart-items::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 4px;
+        }
+        .cart-items::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 0.8rem 1.8rem;
+            border-radius: 9999px;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            z-index: 3000;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border: 1px solid var(--border-color);
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.success {
+            border-right: 4px solid var(--color-success);
+        }
+        .toast.error {
+            border-right: 4px solid var(--color-error);
+        }
+        html[dir="rtl"] .toast {
+            right: auto;
+            left: 2rem;
+        }
+        html[dir="rtl"] .toast.success {
+            border-right: none;
+            border-left: 4px solid var(--color-success);
+        }
+        html[dir="rtl"] .toast.error {
+            border-right: none;
+            border-left: 4px solid var(--color-error);
+        }
+
+        /* Map embed responsive */
+        .map-container {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 320px;
+            display: block;
+        }
+
+        /* Testimonial */
+        .testimonial-card {
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .testimonial-card .stars {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin: 0.75rem 0;
+            line-height: 1.7;
+        }
+        .testimonial-card .name {
+            font-weight: 700;
+        }
+        .testimonial-card .role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    TOAST NOTIFICATION
+    ============================================================ -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">تمت الإضافة</span>
+    </div>
+
+    <!-- ============================================================
+    CART OVERLAY & DRAWER
+    ============================================================ -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h2 id="cartTitle">🛒 سلة المشتريات</h2>
+            <button class="cart-close" id="cartCloseBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="cartItemsContainer" class="cart-items">
+            <!-- dynamically rendered -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span id="totalLabel">الإجمالي</span>
+                <span id="cartTotalPrice">0 <small>ج.م</small></span>
+            </div>
+            <button class="btn-primary w-full justify-center" id="checkoutBtn">
+                <i class="fas fa-credit-card"></i> <span id="checkoutLabel">إتمام الطلب</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SCROLL TO TOP
+    ============================================================ -->
+    <button id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 text-2xl font-bold text-coffee" data-page="home">
+                    <span class="text-gold">☕</span>
+                    <span class="font-display">The Cozy Cup</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="desktop-nav items-center gap-8 text-sm font-medium">
+                    <a href="#" class="nav-link active" data-page="home" data-i18n="nav.home">الرئيسية</a>
+                    <a href="#" class="nav-link" data-page="menu" data-i18n="nav.menu">القائمة</a>
+                    <a href="#" class="nav-link" data-page="reservation" data-i18n="nav.reservation">حجز طاولة</a>
+                    <a href="#" class="nav-link" data-page="delivery" data-i18n="nav.delivery">توصيل</a>
+                    <a href="#" class="nav-link" data-page="about" data-i18n="nav.about">عن الكافيه</a>
+                    <a href="#" class="nav-link" data-page="branches" data-i18n="nav.branches">الفروع</a>
+                    <a href="#" class="nav-link" data-page="contact" data-i18n="nav.contact">اتصل بنا</a>
+                </div>
+
+                <!-- Right: Theme + Lang + Cart + Mobile toggle -->
+                <div class="flex items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+
+                    <button class="lang-toggle" id="langToggle">
+                        <i class="fas fa-globe"></i>
+                        <span id="langLabel">AR</span>
+                    </button>
+
+                    <button class="relative text-coffee-light hover:text-coffee transition p-2" id="cartOpenBtn">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span id="cartCount" class="absolute -top-1 -right-1 bg-gold text-[#1A110C] text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <button class="mobile-toggle text-2xl text-coffee-light hover:text-coffee p-1" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#" class="nav-link active" data-page="home" data-i18n="nav.home">الرئيسية</a>
+                <a href="#" class="nav-link" data-page="menu" data-i18n="nav.menu">القائمة</a>
+                <a href="#" class="nav-link" data-page="reservation" data-i18n="nav.reservation">حجز طاولة</a>
+                <a href="#" class="nav-link" data-page="delivery" data-i18n="nav.delivery">توصيل</a>
+                <a href="#" class="nav-link" data-page="about" data-i18n="nav.about">عن الكافيه</a>
+                <a href="#" class="nav-link" data-page="branches" data-i18n="nav.branches">الفروع</a>
+                <a href="#" class="nav-link" data-page="contact" data-i18n="nav.contact">اتصل بنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    PAGE: HOME
+    ============================================================ -->
+    <section id="page-home" class="page-section active">
+
+        <!-- Hero -->
+        <div class="hero">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
+                    <h1 class="hero-title">
+                        <span data-i18n="hero.title1">قهوة</span><br />
+                        <span class="gold" data-i18n="hero.title2">بدفء المنزل</span>
+                    </h1>
+                    <p class="hero-sub" data-i18n="hero.sub">
+                        في The Cozy Cup، نصنع كل كوب بحب ونقدمه مع ابتسامة. اكتشف مذاق القهوة الحقيقي في أجواء دافئة.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn-primary" data-page="menu">
+                            <i class="fas fa-coffee"></i> <span data-i18n="hero.btnMenu">استكشف القائمة</span>
+                        </a>
+                        <a href="#" class="btn-outline-primary" data-page="reservation">
+                            <i class="fas fa-calendar-plus"></i> <span data-i18n="hero.btnReserve">احجز طاولة</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="section-padding bg-warm-secondary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="features.title">لماذا تختارنا؟</h2>
+                    <p class="section-subtitle" data-i18n="features.sub">نقدم لك تجربة قهوة لا تُنسى مع لمسات دافئة وخدمة استثنائية</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="feature-icon"><i class="fas fa-seedling"></i></span>
+                        <h3 data-i18n="features.f1.title">حبوب مختارة</h3>
+                        <p data-i18n="features.f1.desc">نختار أفضل حبوب البن من أجود المزارع حول العالم لنقدم لك مذاقاً استثنائياً.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <span class="feature-icon"><i class="fas fa-heart"></i></span>
+                        <h3 data-i18n="features.f2.title">صنع بحب</h3>
+                        <p data-i18n="features.f2.desc">كل كوب يُصنع بعناية وشغف من قبل خبراء القهوة لدينا ليمنحك تجربة فريدة.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <span class="feature-icon"><i class="fas fa-mug-hot"></i></span>
+                        <h3 data-i18n="features.f3.title">أجواء دافئة</h3>
+                        <p data-i18n="features.f3.desc">تصميم كلاسيكي دافئ يجمع بين الأناقة والراحة، مثالي للاسترخاء والعمل.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Items -->
+        <div class="section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="popular.title">☕ أشهر المشروبات</h2>
+                    <p class="section-subtitle" data-i18n="popular.sub">اختار من بين أشهر مشروباتنا التي يفضلها زبائننا</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="popularGrid">
+                    <!-- Rendered by JS -->
+                </div>
+                <div class="text-center mt-10">
+                    <a href="#" class="btn-primary" data-page="menu">
+                        <i class="fas fa-list-ul"></i> <span data-i18n="popular.viewAll">عرض القائمة كاملة</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="section-padding bg-warm-secondary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="testimonials.title">💬 آراء زبائننا</h2>
+                    <p class="section-subtitle" data-i18n="testimonials.sub">ما يقوله عشاق القهوة عن تجربتهم في The Cozy Cup</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p data-i18n="testimonials.t1.text">"أفضل لاتيه في المدينة! الأجواء مريحة والخدمة ممتازة. أنصح الجميع بزيارة The Cozy Cup."</p>
+                        <div class="name">سارة أحمد</div>
+                        <div class="role" data-i18n="testimonials.t1.role">زبونة دائمة</div>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p data-i18n="testimonials.t2.text">"مكان رائع للعمل عن بعد. القهوة لذيذة والمعجنات طازجة. إنه بيتي الثاني!"</p>
+                        <div class="name">محمد خالد</div>
+                        <div class="role" data-i18n="testimonials.t2.role">مصمم جرافيك</div>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p data-i18n="testimonials.t3.text">"خدمة التوصيل سريعة والقهوة تصل ساخنة. طلبت كابتشينو وكان رائعاً!"</p>
+                        <div class="name">نورا سامي</div>
+                        <div class="role" data-i18n="testimonials.t3.role">مصممة أزياء</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="section-padding">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="newsletter-box" data-aos="fade-up">
+                    <h2 data-i18n="newsletter.title">📬 اشترك في النشرة البريدية</h2>
+                    <p data-i18n="newsletter.sub">احصل على أحدث العروض والخصومات الحصرية أولاً بأول</p>
+                    <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-xl mx-auto">
+                        <input type="email" class="form-control" id="newsletterEmail" placeholder="بريدك الإلكتروني" required style="max-width:320px;" />
+                        <button type="submit" class="btn-gold" data-i18n="newsletter.btn">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ============================================================
+    PAGE: MENU
+    ============================================================ -->
+    <section id="page-menu" class="page-section">
+        <div class="section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="menu.pageTitle">☕ قائمة المشروبات</h2>
+                    <p class="section-subtitle" data-i18n="menu.pageSub">اختر من بين تشكيلتنا المتنوعة من المشروبات الساخنة والباردة والحلويات</p>
+                </div>
+
+                <!-- Search Box -->
+                <div class="search-box" data-aos="fade-up">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="menuSearch" data-i18n-placeholder="search.placeholder" placeholder="ابحث عن منتج..." />
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs" id="filterTabs" data-aos="fade-up">
+                    <!-- Rendered by JS -->
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="menuGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: RESERVATION
+    ============================================================ -->
+    <section id="page-reservation" class="page-section">
+        <div class="section-padding">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="reservation.title">📅 حجز طاولة</h2>
+                    <p class="section-subtitle" data-i18n="reservation.sub">احجز طاولتك مسبقاً واستمتع بأجواء The Cozy Cup الدافئة</p>
+                </div>
+                <div class="form-card" data-aos="fade-up" data-aos-delay="100">
+                    <form id="reservationForm" novalidate>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label data-i18n="reservation.name">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="resName" required data-i18n-placeholder="reservation.namePlaceholder" placeholder="أدخل اسمك" />
+                                <div class="form-error" id="resNameError" data-i18n="reservation.nameError">الاسم مطلوب</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="reservation.phone">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="resPhone" required data-i18n-placeholder="reservation.phonePlaceholder" placeholder="أدخل رقم الهاتف" />
+                                <div class="form-error" id="resPhoneError" data-i18n="reservation.phoneError">رقم الهاتف مطلوب</div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label data-i18n="reservation.date">التاريخ</label>
+                                <input type="date" class="form-control" id="resDate" required />
+                                <div class="form-error" id="resDateError" data-i18n="reservation.dateError">يرجى اختيار تاريخ</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="reservation.time">الوقت</label>
+                                <input type="time" class="form-control" id="resTime" required />
+                                <div class="form-error" id="resTimeError" data-i18n="reservation.timeError">يرجى اختيار وقت</div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label data-i18n="reservation.guests">عدد الأشخاص</label>
+                                <input type="number" class="form-control" id="resGuests" min="1" max="20" value="2" required />
+                                <div class="form-error" id="resGuestsError" data-i18n="reservation.guestsError">يرجى تحديد عدد الأشخاص</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="reservation.branch">الفرع</label>
+                                <select class="form-control" id="resBranch">
+                                    <option value="main" data-i18n="reservation.branchMain">الفرع الرئيسي - وسط البلد</option>
+                                    <option value="nile" data-i18n="reservation.branchNile">فرع النيل - الزمالك</option>
+                                    <option value="new" data-i18n="reservation.branchNew">الفرع الجديد - مدينة نصر</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="reservation.notes">ملاحظات إضافية</label>
+                            <textarea class="form-control" id="resNotes" rows="3" data-i18n-placeholder="reservation.notesPlaceholder" placeholder="أي طلبات خاصة..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full justify-center">
+                            <i class="fas fa-check"></i> <span data-i18n="reservation.submit">احجز الآن</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: DELIVERY
+    ============================================================ -->
+    <section id="page-delivery" class="page-section">
+        <div class="section-padding">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="delivery.title">🚚 طلب توصيل</h2>
+                    <p class="section-subtitle" data-i18n="delivery.sub">استمتع بمشروباتك المفضلة في منزلك مع خدمة التوصيل السريعة</p>
+                </div>
+                <div class="form-card" data-aos="fade-up" data-aos-delay="100">
+                    <form id="deliveryForm" novalidate>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label data-i18n="delivery.name">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="delName" required data-i18n-placeholder="delivery.namePlaceholder" placeholder="أدخل اسمك" />
+                                <div class="form-error" id="delNameError" data-i18n="delivery.nameError">الاسم مطلوب</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="delivery.phone">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="delPhone" required data-i18n-placeholder="delivery.phonePlaceholder" placeholder="أدخل رقم الهاتف" />
+                                <div class="form-error" id="delPhoneError" data-i18n="delivery.phoneError">رقم الهاتف مطلوب</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="delivery.address">عنوان التوصيل</label>
+                            <input type="text" class="form-control" id="delAddress" required data-i18n-placeholder="delivery.addressPlaceholder" placeholder="أدخل عنوانك بالتفصيل" />
+                            <div class="form-error" id="delAddressError" data-i18n="delivery.addressError">العنوان مطلوب</div>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="delivery.notes">ملاحظات إضافية</label>
+                            <textarea class="form-control" id="delNotes" rows="3" data-i18n-placeholder="delivery.notesPlaceholder" placeholder="أي تعليمات للتوصيل..."></textarea>
+                        </div>
+
+                        <div class="bg-warm-secondary rounded-xl p-4 mb-4">
+                            <h4 class="font-bold mb-2" data-i18n="delivery.orderSummary">ملخص الطلب</h4>
+                            <div id="deliveryCartSummary">
+                                <!-- rendered by JS -->
+                            </div>
+                            <div class="flex justify-between font-bold text-lg border-t border-[rgba(201,169,110,0.15)] pt-2 mt-2">
+                                <span data-i18n="delivery.total">الإجمالي</span>
+                                <span id="deliveryTotal">0 <small>ج.م</small></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full justify-center">
+                            <i class="fas fa-truck"></i> <span data-i18n="delivery.submit">أطلب التوصيل</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: ABOUT
+    ============================================================ -->
+    <section id="page-about" class="page-section">
+        <div class="section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Story -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16" data-aos="fade-up">
+                    <div>
+                        <h2 class="section-title" data-i18n="about.title">📖 قصتنا</h2>
+                        <p class="text-coffee-light text-lg leading-relaxed mt-4" data-i18n="about.story">
+                            تأسس كافيه The Cozy Cup عام 2018 على يد عشاق القهوة الذين آمنوا بأن كل كوب قهوة يحمل قصة.
+                            بدأنا كمقهى صغير في قلب المدينة، وسرعان ما أصبحنا وجهة مفضلة لعشاق القهوة بفضل جودة مشروباتنا
+                            وأجوائنا الدافئة. اليوم، نفخر بوجود ثلاثة فروع تقدم أفضل تجربة قهوة في المدينة.
+                        </p>
+                        <p class="text-coffee-light text-lg leading-relaxed mt-4" data-i18n="about.story2">
+                            نؤمن بأن القهوة الجيدة تجمع الناس، ونعمل كل يوم لنصنع لحظات سعيدة لكوب واحد في كل مرة.
+                        </p>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-xl border border-[var(--border-color)]">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80" alt="Cafe interior" class="w-full h-80 object-cover" />
+                    </div>
+                </div>
+
+                <!-- Values -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-16" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center p-6 bg-[var(--bg-card)] rounded-2xl shadow-md border border-[var(--border-color)]">
+                        <span class="text-4xl text-gold block mb-3"><i class="fas fa-heart"></i></span>
+                        <h4 class="font-bold text-xl" data-i18n="about.val1.title">شغف</h4>
+                        <p class="text-coffee-light" data-i18n="about.val1.desc">نصنع قهوتنا بشغف وحب لنقدم لك أفضل تجربة</p>
+                    </div>
+                    <div class="text-center p-6 bg-[var(--bg-card)] rounded-2xl shadow-md border border-[var(--border-color)]">
+                        <span class="text-4xl text-gold block mb-3"><i class="fas fa-leaf"></i></span>
+                        <h4 class="font-bold text-xl" data-i18n="about.val2.title">جودة</h4>
+                        <p class="text-coffee-light" data-i18n="about.val2.desc">نختار أفضل الحبوب ونخبز أجود المعجنات يومياً</p>
+                    </div>
+                    <div class="text-center p-6 bg-[var(--bg-card)] rounded-2xl shadow-md border border-[var(--border-color)]">
+                        <span class="text-4xl text-gold block mb-3"><i class="fas fa-users"></i></span>
+                        <h4 class="font-bold text-xl" data-i18n="about.val3.title">مجتمع</h4>
+                        <p class="text-coffee-light" data-i18n="about.val3.desc">نخلق مساحة دافئة للقاء الأصدقاء والعمل والإبداع</p>
+                    </div>
+                </div>
+
+                <!-- Team -->
+                <div data-aos="fade-up">
+                    <div class="text-center mb-10">
+                        <h2 class="section-title" data-i18n="about.teamTitle">👨‍🍳 فريق العمل</h2>
+                        <p class="section-subtitle" data-i18n="about.teamSub">خبراء القهوة وراء كل كوب لذيذ</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                            <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=200&q=80" alt="Chef" />
+                            <h4 data-i18n="about.team1.name">أحمد حسن</h4>
+                            <div class="role" data-i18n="about.team1.role">شيف القهوة</div>
+                        </div>
+                        <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=200&q=80" alt="Barista" />
+                            <h4 data-i18n="about.team2.name">ليلى محمود</h4>
+                            <div class="role" data-i18n="about.team2.role">أخصائية تحميص</div>
+                        </div>
+                        <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=200&q=80" alt="Manager" />
+                            <h4 data-i18n="about.team3.name">سامي ربيع</h4>
+                            <div class="role" data-i18n="about.team3.role">مدير الكافيه</div>
+                        </div>
+                        <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+                            <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=200&q=80" alt="Pastry" />
+                            <h4 data-i18n="about.team4.name">مريم فتحي</h4>
+                            <div class="role" data-i18n="about.team4.role">شيف الحلويات</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: BRANCHES
+    ============================================================ -->
+    <section id="page-branches" class="page-section">
+        <div class="section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="branches.title">📍 فروعنا</h2>
+                    <p class="section-subtitle" data-i18n="branches.sub">تفضل بزيارة أقرب فرع لك واستمتع بأجواء The Cozy Cup</p>
+                </div>
+
+                <!-- Map -->
+                <div class="map-container mb-10" data-aos="fade-up">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.317960731297!2d31.2356864!3d30.0736133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840d73e4c71ef%3A0x9ac6dcb85bbf327e!2sDowntown%20Cairo!5e0!3m2!1sen!2seg!4v1700000000000" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- Branch Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="branch-card">
+                        <h4 data-i18n="branches.b1.name">الفرع الرئيسي - وسط البلد</h4>
+                        <p><i class="fas fa-map-pin"></i> <span data-i18n="branches.b1.address">شارع القصر العيني، وسط البلد، القاهرة</span></p>
+                        <p><i class="fas fa-phone"></i> <span data-i18n="branches.b1.phone">+20 100 123 4567</span></p>
+                        <p><i class="fas fa-clock"></i> <span data-i18n="branches.b1.hours">٧:٠٠ ص – ١١:٠٠ م</span></p>
+                    </div>
+                    <div class="branch-card">
+                        <h4 data-i18n="branches.b2.name">فرع النيل - الزمالك</h4>
+                        <p><i class="fas fa-map-pin"></i> <span data-i18n="branches.b2.address">شارع أبو الفدا، الزمالك، القاهرة</span></p>
+                        <p><i class="fas fa-phone"></i> <span data-i18n="branches.b2.phone">+20 100 234 5678</span></p>
+                        <p><i class="fas fa-clock"></i> <span data-i18n="branches.b2.hours">٧:٠٠ ص – ١٢:٠٠ ص</span></p>
+                    </div>
+                    <div class="branch-card">
+                        <h4 data-i18n="branches.b3.name">الفرع الجديد - مدينة نصر</h4>
+                        <p><i class="fas fa-map-pin"></i> <span data-i18n="branches.b3.address">شارع مصطفى النحاس، مدينة نصر، القاهرة</span></p>
+                        <p><i class="fas fa-phone"></i> <span data-i18n="branches.b3.phone">+20 100 345 6789</span></p>
+                        <p><i class="fas fa-clock"></i> <span data-i18n="branches.b3.hours">٨:٠٠ ص – ١٠:٠٠ م</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: CONTACT
+    ============================================================ -->
+    <section id="page-contact" class="page-section">
+        <div class="section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <h2 class="section-title" data-i18n="contact.title">📞 تواصل معنا</h2>
+                    <p class="section-subtitle" data-i18n="contact.sub">نحن هنا لخدمتك، تواصل معنا لأي استفسار أو اقتراح</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="form-card" data-aos="fade-up" data-aos-delay="100">
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label data-i18n="contact.name">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="contactName" required data-i18n-placeholder="contact.namePlaceholder" placeholder="أدخل اسمك" />
+                                <div class="form-error" id="contactNameError" data-i18n="contact.nameError">الاسم مطلوب</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="contact.email">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" id="contactEmail" required data-i18n-placeholder="contact.emailPlaceholder" placeholder="أدخل بريدك" />
+                                <div class="form-error" id="contactEmailError" data-i18n="contact.emailError">البريد الإلكتروني مطلوب</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="contact.subject">الموضوع</label>
+                                <input type="text" class="form-control" id="contactSubject" required data-i18n-placeholder="contact.subjectPlaceholder" placeholder="موضوع الرسالة" />
+                                <div class="form-error" id="contactSubjectError" data-i18n="contact.subjectError">الموضوع مطلوب</div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="contact.message">الرسالة</label>
+                                <textarea class="form-control" id="contactMessage" rows="4" required data-i18n-placeholder="contact.messagePlaceholder" placeholder="اكتب رسالتك هنا..."></textarea>
+                                <div class="form-error" id="contactMessageError" data-i18n="contact.messageError">الرسالة مطلوبة</div>
+                            </div>
+                            <button type="submit" class="btn-primary w-full justify-center">
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="contact.submit">أرسل الرسالة</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-[var(--bg-card)] rounded-2xl p-8 shadow-md border border-[var(--border-color)]">
+                            <h3 class="text-2xl font-bold mb-6" data-i18n="contact.infoTitle">معلومات التواصل</h3>
+                            <div class="space-y-5">
+                                <div class="flex items-start gap-4">
+                                    <span class="text-2xl text-gold w-10"><i class="fas fa-map-marker-alt"></i></span>
+                                    <div>
+                                        <div class="font-bold" data-i18n="contact.infoAddressTitle">العنوان</div>
+                                        <p class="text-coffee-light" data-i18n="contact.infoAddress">شارع القصر العيني، وسط البلد، القاهرة</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="text-2xl text-gold w-10"><i class="fas fa-phone"></i></span>
+                                    <div>
+                                        <div class="font-bold" data-i18n="contact.infoPhoneTitle">الهاتف</div>
+                                        <p class="text-coffee-light">+20 100 123 4567</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="text-2xl text-gold w-10"><i class="fas fa-envelope"></i></span>
+                                    <div>
+                                        <div class="font-bold" data-i18n="contact.infoEmailTitle">البريد الإلكتروني</div>
+                                        <p class="text-coffee-light">info@thecozycup.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="text-2xl text-gold w-10"><i class="fas fa-clock"></i></span>
+                                    <div>
+                                        <div class="font-bold" data-i18n="contact.infoHoursTitle">ساعات العمل</div>
+                                        <p class="text-coffee-light" data-i18n="contact.infoHours">٧:٠٠ ص – ١١:٠٠ م (يومياً)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social -->
+                            <div class="mt-8 pt-6 border-t border-[var(--border-color)]">
+                                <h4 class="font-bold mb-3" data-i18n="contact.socialTitle">تابعنا على</h4>
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-12 h-12 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-coffee-light hover:bg-gold hover:text-[#1A110C] transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="w-12 h-12 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-coffee-light hover:bg-gold hover:text-[#1A110C] transition text-xl"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="w-12 h-12 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-coffee-light hover:bg-gold hover:text-[#1A110C] transition text-xl"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="w-12 h-12 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-coffee-light hover:bg-gold hover:text-[#1A110C] transition text-xl"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-2xl font-display text-white">☕ The Cozy Cup</h4>
+                    <p class="mt-2 text-sm" data-i18n="footer.tagline">قهوة بدفء المنزل</p>
+                    <p class="mt-2 text-sm opacity-70" data-i18n="footer.address">وسط البلد، القاهرة</p>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.linksTitle">روابط سريعة</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" data-page="home" data-i18n="nav.home">الرئيسية</a></li>
+                        <li><a href="#" data-page="menu" data-i18n="nav.menu">القائمة</a></li>
+                        <li><a href="#" data-page="reservation" data-i18n="nav.reservation">حجز طاولة</a></li>
+                        <li><a href="#" data-page="delivery" data-i18n="nav.delivery">توصيل</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.supportTitle">الدعم</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" data-page="about" data-i18n="nav.about">عن الكافيه</a></li>
+                        <li><a href="#" data-page="branches" data-i18n="nav.branches">الفروع</a></li>
+                        <li><a href="#" data-page="contact" data-i18n="nav.contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.socialTitle">تابعنا</h4>
+                    <div class="social-links mt-2">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p class="mt-4 text-sm opacity-60" data-i18n="footer.copyright">© 2026 The Cozy Cup. جميع الحقوق محفوظة.</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-sm opacity-50">
+                <span data-i18n="footer.made">صُنع بحب ☕</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <!-- AOS.js -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+
+    <!-- ============================================================
+    MAIN APPLICATION
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. DATA — menu.json (embedded)
+        // ============================================================
+        const MENU_DATA = {
+            products: [{
+                id: 1,
+                name: { ar: 'لاتيه', en: 'Latte' },
+                category: 'hot-coffee',
+                price: 45,
+                image: 'https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400&q=80',
+                description: { ar: 'إسبريسو مع حليب بخاري ناعم', en: 'Espresso with steamed milk' }
+            }, {
+                id: 2,
+                name: { ar: 'كابتشينو', en: 'Cappuccino' },
+                category: 'hot-coffee',
+                price: 50,
+                image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=80',
+                description: { ar: 'إسبريسو مع رغوة حليب كثيفة', en: 'Espresso with thick milk foam' }
+            }, {
+                id: 3,
+                name: { ar: 'موكا', en: 'Mocha' },
+                category: 'hot-coffee',
+                price: 55,
+                image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&q=80',
+                description: { ar: 'إسبريسو مع شوكولاتة وحليب', en: 'Espresso with chocolate and milk' }
+            }, {
+                id: 4,
+                name: { ar: 'أمريكانو', en: 'Americano' },
+                category: 'hot-coffee',
+                price: 40,
+                image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?w=400&q=80',
+                description: { ar: 'إسبريسو مخفف بالماء الساخن', en: 'Espresso diluted with hot water' }
+            }, {
+                id: 5,
+                name: { ar: 'قهوة مثلجة', en: 'Iced Coffee' },
+                category: 'cold-coffee',
+                price: 48,
+                image: 'https://images.unsplash.com/photo-1517701604599-bb29b880090f?w=400&q=80',
+                description: { ar: 'قهوة باردة منعشة مع الثلج', en: 'Refreshing cold coffee with ice' }
+            }, {
+                id: 6,
+                name: { ar: 'لاتيه مثلج', en: 'Iced Latte' },
+                category: 'cold-coffee',
+                price: 52,
+                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80',
+                description: { ar: 'لاتيه بارد مع حليب وثلج', en: 'Cold latte with milk and ice' }
+            }, {
+                id: 7,
+                name: { ar: 'فرابتشينو', en: 'Frappuccino' },
+                category: 'cold-coffee',
+                price: 58,
+                image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&q=80',
+                description: { ar: 'مشروب بارد ممزوج بالثلج والكريمة', en: 'Blended cold drink with ice and cream' }
+            }, {
+                id: 8,
+                name: { ar: 'تشيز كيك', en: 'Cheesecake' },
+                category: 'desserts',
+                price: 65,
+                image: 'https://images.unsplash.com/photo-1524351199673-3d4d0bb0cfdb?w=400&q=80',
+                description: { ar: 'تشيز كيك كريمي مع طبقة فواكه', en: 'Creamy cheesecake with fruit topping' }
+            }, {
+                id: 9,
+                name: { ar: 'كرواسان', en: 'Croissant' },
+                category: 'desserts',
+                price: 35,
+                image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80',
+                description: { ar: 'كرواسان فرنسي طازج ومقرمش', en: 'Fresh French croissant' }
+            }, {
+                id: 10,
+                name: { ar: 'شاي أخضر', en: 'Green Tea' },
+                category: 'others',
+                price: 30,
+                image: 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=400&q=80',
+                description: { ar: 'شاي أخضر طبيعي منعش', en: 'Natural refreshing green tea' }
+            }, {
+                id: 11,
+                name: { ar: 'عصير برتقال', en: 'Orange Juice' },
+                category: 'others',
+                price: 38,
+                image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&q=80',
+                description: { ar: 'عصير برتقال طازج ١٠٠٪', en: '100% fresh orange juice' }
+            }, {
+                id: 12,
+                name: { ar: 'شوكولاتة ساخنة', en: 'Hot Chocolate' },
+                category: 'others',
+                price: 42,
+                image: 'https://images.unsplash.com/photo-1542990253-a44e8f8b741a?w=400&q=80',
+                description: { ar: 'شوكولاتة غنية بالحليب الساخن', en: 'Rich hot chocolate with milk' }
+            }],
+            categories: [
+                { id: 'all', name: { ar: 'الكل', en: 'All' } },
+                { id: 'hot-coffee', name: { ar: 'قهوة ساخنة', en: 'Hot Coffee' } },
+                { id: 'cold-coffee', name: { ar: 'قهوة باردة', en: 'Cold Coffee' } },
+                { id: 'desserts', name: { ar: 'حلويات', en: 'Desserts' } },
+                { id: 'others', name: { ar: 'مشروبات أخرى', en: 'Other Drinks' } }
+            ]
+        };
+
+        // ============================================================
+        // 2. TRANSLATIONS
+        // ============================================================
+        const TRANSLATIONS = {
+            ar: {
+                'nav.home': 'الرئيسية',
+                'nav.menu': 'القائمة',
+                'nav.reservation': 'حجز طاولة',
+                'nav.delivery': 'توصيل',
+                'nav.about': 'عن الكافيه',
+                'nav.branches': 'الفروع',
+                'nav.contact': 'اتصل بنا',
+                'search.placeholder': 'ابحث عن منتج...',
+                'hero.title1': 'قهوة',
+                'hero.title2': 'بدفء المنزل',
+                'hero.sub': 'في The Cozy Cup، نصنع كل كوب بحب ونقدمه مع ابتسامة. اكتشف مذاق القهوة الحقيقي في أجواء دافئة.',
+                'hero.btnMenu': 'استكشف القائمة',
+                'hero.btnReserve': 'احجز طاولة',
+                'features.title': 'لماذا تختارنا؟',
+                'features.sub': 'نقدم لك تجربة قهوة لا تُنسى مع لمسات دافئة وخدمة استثنائية',
+                'features.f1.title': 'حبوب مختارة',
+                'features.f1.desc': 'نختار أفضل حبوب البن من أجود المزارع حول العالم لنقدم لك مذاقاً استثنائياً.',
+                'features.f2.title': 'صنع بحب',
+                'features.f2.desc': 'كل كوب يُصنع بعناية وشغف من قبل خبراء القهوة لدينا ليمنحك تجربة فريدة.',
+                'features.f3.title': 'أجواء دافئة',
+                'features.f3.desc': 'تصميم كلاسيكي دافئ يجمع بين الأناقة والراحة، مثالي للاسترخاء والعمل.',
+                'popular.title': '☕ أشهر المشروبات',
+                'popular.sub': 'اختار من بين أشهر مشروباتنا التي يفضلها زبائننا',
+                'popular.viewAll': 'عرض القائمة كاملة',
+                'testimonials.title': '💬 آراء زبائننا',
+                'testimonials.sub': 'ما يقوله عشاق القهوة عن تجربتهم في The Cozy Cup',
+                'testimonials.t1.text': '"أفضل لاتيه في المدينة! الأجواء مريحة والخدمة ممتازة. أنصح الجميع بزيارة The Cozy Cup."',
+                'testimonials.t1.role': 'زبونة دائمة',
+                'testimonials.t2.text': '"مكان رائع للعمل عن بعد. القهوة لذيذة والمعجنات طازجة. إنه بيتي الثاني!"',
+                'testimonials.t2.role': 'مصمم جرافيك',
+                'testimonials.t3.text': '"خدمة التوصيل سريعة والقهوة تصل ساخنة. طلبت كابتشينو وكان رائعاً!"',
+                'testimonials.t3.role': 'مصممة أزياء',
+                'newsletter.title': '📬 اشترك في النشرة البريدية',
+                'newsletter.sub': 'احصل على أحدث العروض والخصومات الحصرية أولاً بأول',
+                'newsletter.btn': 'اشترك الآن',
+                'menu.pageTitle': '☕ قائمة المشروبات',
+                'menu.pageSub': 'اختر من بين تشكيلتنا المتنوعة من المشروبات الساخنة والباردة والحلويات',
+                'reservation.title': '📅 حجز طاولة',
+                'reservation.sub': 'احجز طاولتك مسبقاً واستمتع بأجواء The Cozy Cup الدافئة',
+                'reservation.name': 'الاسم الكامل',
+                'reservation.namePlaceholder': 'أدخل اسمك',
+                'reservation.nameError': 'الاسم مطلوب',
+                'reservation.phone': 'رقم الهاتف',
+                'reservation.phonePlaceholder': 'أدخل رقم الهاتف',
+                'reservation.phoneError': 'رقم الهاتف مطلوب',
+                'reservation.date': 'التاريخ',
+                'reservation.dateError': 'يرجى اختيار تاريخ',
+                'reservation.time': 'الوقت',
+                'reservation.timeError': 'يرجى اختيار وقت',
+                'reservation.guests': 'عدد الأشخاص',
+                'reservation.guestsError': 'يرجى تحديد عدد الأشخاص',
+                'reservation.branch': 'الفرع',
+                'reservation.branchMain': 'الفرع الرئيسي - وسط البلد',
+                'reservation.branchNile': 'فرع النيل - الزمالك',
+                'reservation.branchNew': 'الفرع الجديد - مدينة نصر',
+                'reservation.notes': 'ملاحظات إضافية',
+                'reservation.notesPlaceholder': 'أي طلبات خاصة...',
+                'reservation.submit': 'احجز الآن',
+                'delivery.title': '🚚 طلب توصيل',
+                'delivery.sub': 'استمتع بمشروباتك المفضلة في منزلك مع خدمة التوصيل السريعة',
+                'delivery.name': 'الاسم الكامل',
+                'delivery.namePlaceholder': 'أدخل اسمك',
+                'delivery.nameError': 'الاسم مطلوب',
+                'delivery.phone': 'رقم الهاتف',
+                'delivery.phonePlaceholder': 'أدخل رقم الهاتف',
+                'delivery.phoneError': 'رقم الهاتف مطلوب',
+                'delivery.address': 'عنوان التوصيل',
+                'delivery.addressPlaceholder': 'أدخل عنوانك بالتفصيل',
+                'delivery.addressError': 'العنوان مطلوب',
+                'delivery.notes': 'ملاحظات إضافية',
+                'delivery.notesPlaceholder': 'أي تعليمات للتوصيل...',
+                'delivery.orderSummary': 'ملخص الطلب',
+                'delivery.total': 'الإجمالي',
+                'delivery.submit': 'أطلب التوصيل',
+                'about.title': '📖 قصتنا',
+                'about.story': 'تأسس كافيه The Cozy Cup عام 2018 على يد عشاق القهوة الذين آمنوا بأن كل كوب قهوة يحمل قصة. بدأنا كمقهى صغير في قلب المدينة، وسرعان ما أصبحنا وجهة مفضلة لعشاق القهوة بفضل جودة مشروباتنا وأجوائنا الدافئة. اليوم، نفخر بوجود ثلاثة فروع تقدم أفضل تجربة قهوة في المدينة.',
+                'about.story2': 'نؤمن بأن القهوة الجيدة تجمع الناس، ونعمل كل يوم لنصنع لحظات سعيدة لكوب واحد في كل مرة.',
+                'about.val1.title': 'شغف',
+                'about.val1.desc': 'نصنع قهوتنا بشغف وحب لنقدم لك أفضل تجربة',
+                'about.val2.title': 'جودة',
+                'about.val2.desc': 'نختار أفضل الحبوب ونخبز أجود المعجنات يومياً',
+                'about.val3.title': 'مجتمع',
+                'about.val3.desc': 'نخلق مساحة دافئة للقاء الأصدقاء والعمل والإبداع',
+                'about.teamTitle': '👨‍🍳 فريق العمل',
+                'about.teamSub': 'خبراء القهوة وراء كل كوب لذيذ',
+                'about.team1.name': 'أحمد حسن',
+                'about.team1.role': 'شيف القهوة',
+                'about.team2.name': 'ليلى محمود',
+                'about.team2.role': 'أخصائية تحميص',
+                'about.team3.name': 'سامي ربيع',
+                'about.team3.role': 'مدير الكافيه',
+                'about.team4.name': 'مريم فتحي',
+                'about.team4.role': 'شيف الحلويات',
+                'branches.title': '📍 فروعنا',
+                'branches.sub': 'تفضل بزيارة أقرب فرع لك واستمتع بأجواء The Cozy Cup',
+                'branches.b1.name': 'الفرع الرئيسي - وسط البلد',
+                'branches.b1.address': 'شارع القصر العيني، وسط البلد، القاهرة',
+                'branches.b1.phone': '+20 100 123 4567',
+                'branches.b1.hours': '٧:٠٠ ص – ١١:٠٠ م',
+                'branches.b2.name': 'فرع النيل - الزمالك',
+                'branches.b2.address': 'شارع أبو الفدا، الزمالك، القاهرة',
+                'branches.b2.phone': '+20 100 234 5678',
+                'branches.b2.hours': '٧:٠٠ ص – ١٢:٠٠ ص',
+                'branches.b3.name': 'الفرع الجديد - مدينة نصر',
+                'branches.b3.address': 'شارع مصطفى النحاس، مدينة نصر، القاهرة',
+                'branches.b3.phone': '+20 100 345 6789',
+                'branches.b3.hours': '٨:٠٠ ص – ١٠:٠٠ م',
+                'contact.title': '📞 تواصل معنا',
+                'contact.sub': 'نحن هنا لخدمتك، تواصل معنا لأي استفسار أو اقتراح',
+                'contact.name': 'الاسم الكامل',
+                'contact.namePlaceholder': 'أدخل اسمك',
+                'contact.nameError': 'الاسم مطلوب',
+                'contact.email': 'البريد الإلكتروني',
+                'contact.emailPlaceholder': 'أدخل بريدك',
+                'contact.emailError': 'البريد الإلكتروني مطلوب',
+                'contact.subject': 'الموضوع',
+                'contact.subjectPlaceholder': 'موضوع الرسالة',
+                'contact.subjectError': 'الموضوع مطلوب',
+                'contact.message': 'الرسالة',
+                'contact.messagePlaceholder': 'اكتب رسالتك هنا...',
+                'contact.messageError': 'الرسالة مطلوبة',
+                'contact.submit': 'أرسل الرسالة',
+                'contact.infoTitle': 'معلومات التواصل',
+                'contact.infoAddressTitle': 'العنوان',
+                'contact.infoAddress': 'شارع القصر العيني، وسط البلد، القاهرة',
+                'contact.infoPhoneTitle': 'الهاتف',
+                'contact.infoEmailTitle': 'البريد الإلكتروني',
+                'contact.infoHoursTitle': 'ساعات العمل',
+                'contact.infoHours': '٧:٠٠ ص – ١١:٠٠ م (يومياً)',
+                'contact.socialTitle': 'تابعنا على',
+                'footer.tagline': 'قهوة بدفء المنزل',
+                'footer.address': 'وسط البلد، القاهرة',
+                'footer.linksTitle': 'روابط سريعة',
+                'footer.supportTitle': 'الدعم',
+                'footer.socialTitle': 'تابعنا',
+                'footer.copyright': '© 2026 The Cozy Cup. جميع الحقوق محفوظة.',
+                'footer.made': 'صُنع بحب ☕',
+                'cart.title': '🛒 سلة المشتريات',
+                'cart.total': 'الإجمالي',
+                'cart.checkout': 'إتمام الطلب',
+                'cart.empty': 'سلة المشتريات فارغة',
+                'cart.added': 'تمت الإضافة إلى السلة',
+                'cart.removed': 'تمت الإزالة من السلة',
+                'cart.updated': 'تم تحديث الكمية',
+                'form.success': 'تم الإرسال بنجاح!',
+                'form.error': 'يرجى ملء جميع الحقول المطلوبة',
+                'reservation.success': 'تم حجز طاولتك بنجاح! سننتظرك في الموعد المحدد.',
+                'delivery.success': 'تم استلام طلب التوصيل! سنتواصل معك قريباً.',
+                'contact.success': 'تم إرسال رسالتك! سنرد عليك في أقرب وقت.',
+                'newsletter.success': 'تم الاشتراك في النشرة البريدية بنجاح!',
+            },
+            en: {
+                'nav.home': 'Home',
+                'nav.menu': 'Menu',
+                'nav.reservation': 'Reservation',
+                'nav.delivery': 'Delivery',
+                'nav.about': 'About',
+                'nav.branches': 'Branches',
+                'nav.contact': 'Contact',
+                'search.placeholder': 'Search for a product...',
+                'hero.title1': 'Coffee',
+                'hero.title2': 'with a Warm Hug',
+                'hero.sub': 'At The Cozy Cup, we make every cup with love and serve it with a smile. Discover the taste of real coffee in a warm atmosphere.',
+                'hero.btnMenu': 'Explore Menu',
+                'hero.btnReserve': 'Book a Table',
+                'features.title': 'Why Choose Us?',
+                'features.sub': 'We offer you an unforgettable coffee experience with warm touches and exceptional service',
+                'features.f1.title': 'Selected Beans',
+                'features.f1.desc': 'We choose the best coffee beans from the finest farms worldwide to give you an exceptional taste.',
+                'features.f2.title': 'Made with Love',
+                'features.f2.desc': 'Every cup is carefully crafted with passion by our coffee experts to give you a unique experience.',
+                'features.f3.title': 'Warm Atmosphere',
+                'features.f3.desc': 'A classic warm design combining elegance and comfort, perfect for relaxing and working.',
+                'popular.title': '☕ Popular Drinks',
+                'popular.sub': 'Choose from our most popular drinks that our customers love',
+                'popular.viewAll': 'View Full Menu',
+                'testimonials.title': '💬 Customer Reviews',
+                'testimonials.sub': 'What coffee lovers say about their experience at The Cozy Cup',
+                'testimonials.t1.text': '"The best latte in town! The atmosphere is cozy and the service is excellent. I recommend everyone to visit The Cozy Cup."',
+                'testimonials.t1.role': 'Regular Customer',
+                'testimonials.t2.text': '"A great place to work remotely. The coffee is delicious and the pastries are fresh. It\'s my second home!"',
+                'testimonials.t2.role': 'Graphic Designer',
+                'testimonials.t3.text': '"Fast delivery and the coffee arrives hot. I ordered a cappuccino and it was amazing!"',
+                'testimonials.t3.role': 'Fashion Designer',
+                'newsletter.title': '📬 Subscribe to Newsletter',
+                'newsletter.sub': 'Get the latest offers and exclusive discounts first',
+                'newsletter.btn': 'Subscribe Now',
+                'menu.pageTitle': '☕ Our Menu',
+                'menu.pageSub': 'Choose from our diverse selection of hot drinks, cold drinks, and desserts',
+                'reservation.title': '📅 Book a Table',
+                'reservation.sub': 'Book your table in advance and enjoy the warm atmosphere of The Cozy Cup',
+                'reservation.name': 'Full Name',
+                'reservation.namePlaceholder': 'Enter your name',
+                'reservation.nameError': 'Name is required',
+                'reservation.phone': 'Phone Number',
+                'reservation.phonePlaceholder': 'Enter phone number',
+                'reservation.phoneError': 'Phone number is required',
+                'reservation.date': 'Date',
+                'reservation.dateError': 'Please select a date',
+                'reservation.time': 'Time',
+                'reservation.timeError': 'Please select a time',
+                'reservation.guests': 'Number of Guests',
+                'reservation.guestsError': 'Please specify number of guests',
+                'reservation.branch': 'Branch',
+                'reservation.branchMain': 'Main Branch - Downtown',
+                'reservation.branchNile': 'Nile Branch - Zamalek',
+                'reservation.branchNew': 'New Branch - Nasr City',
+                'reservation.notes': 'Additional Notes',
+                'reservation.notesPlaceholder': 'Any special requests...',
+                'reservation.submit': 'Book Now',
+                'delivery.title': '🚚 Delivery Order',
+                'delivery.sub': 'Enjoy your favorite drinks at home with our fast delivery service',
+                'delivery.name': 'Full Name',
+                'delivery.namePlaceholder': 'Enter your name',
+                'delivery.nameError': 'Name is required',
+                'delivery.phone': 'Phone Number',
+                'delivery.phonePlaceholder': 'Enter phone number',
+                'delivery.phoneError': 'Phone number is required',
+                'delivery.address': 'Delivery Address',
+                'delivery.addressPlaceholder': 'Enter your full address',
+                'delivery.addressError': 'Address is required',
+                'delivery.notes': 'Additional Notes',
+                'delivery.notesPlaceholder': 'Any delivery instructions...',
+                'delivery.orderSummary': 'Order Summary',
+                'delivery.total': 'Total',
+                'delivery.submit': 'Place Delivery Order',
+                'about.title': '📖 Our Story',
+                'about.story': 'The Cozy Cup Cafe was founded in 2018 by coffee lovers who believed that every cup of coffee tells a story. We started as a small cafe in the heart of the city, and quickly became a favorite destination for coffee lovers thanks to the quality of our drinks and our warm atmosphere. Today, we are proud to have three branches offering the best coffee experience in the city.',
+                'about.story2': 'We believe that good coffee brings people together, and we work every day to create happy moments one cup at a time.',
+                'about.val1.title': 'Passion',
+                'about.val1.desc': 'We make our coffee with passion and love to give you the best experience',
+                'about.val2.title': 'Quality',
+                'about.val2.desc': 'We choose the best beans and bake the finest pastries daily',
+                'about.val3.title': 'Community',
+                'about.val3.desc': 'We create a warm space for friends to meet, work, and create',
+                'about.teamTitle': '👨‍🍳 Our Team',
+                'about.teamSub': 'The coffee experts behind every delicious cup',
+                'about.team1.name': 'Ahmed Hassan',
+                'about.team1.role': 'Coffee Chef',
+                'about.team2.name': 'Layla Mahmoud',
+                'about.team2.role': 'Roasting Specialist',
+                'about.team3.name': 'Sami Rabie',
+                'about.team3.role': 'Cafe Manager',
+                'about.team4.name': 'Mariam Fathi',
+                'about.team4.role': 'Pastry Chef',
+                'branches.title': '📍 Our Branches',
+                'branches.sub': 'Visit your nearest branch and enjoy the atmosphere of The Cozy Cup',
+                'branches.b1.name': 'Main Branch - Downtown',
+                'branches.b1.address': 'Al-Qasr Al-Aini Street, Downtown, Cairo',
+                'branches.b1.phone': '+20 100 123 4567',
+                'branches.b1.hours': '7:00 AM – 11:00 PM',
+                'branches.b2.name': 'Nile Branch - Zamalek',
+                'branches.b2.address': 'Abu Al-Fida Street, Zamalek, Cairo',
+                'branches.b2.phone': '+20 100 234 5678',
+                'branches.b2.hours': '7:00 AM – 12:00 AM',
+                'branches.b3.name': 'New Branch - Nasr City',
+                'branches.b3.address': 'Mostafa El-Nahas Street, Nasr City, Cairo',
+                'branches.b3.phone': '+20 100 345 6789',
+                'branches.b3.hours': '8:00 AM – 10:00 PM',
+                'contact.title': '📞 Contact Us',
+                'contact.sub': 'We are here to serve you, contact us for any inquiry or suggestion',
+                'contact.name': 'Full Name',
+                'contact.namePlaceholder': 'Enter your name',
+                'contact.nameError': 'Name is required',
+                'contact.email': 'Email Address',
+                'contact.emailPlaceholder': 'Enter your email',
+                'contact.emailError': 'Email is required',
+                'contact.subject': 'Subject',
+                'contact.subjectPlaceholder': 'Message subject',
+                'contact.subjectError': 'Subject is required',
+                'contact.message': 'Message',
+                'contact.messagePlaceholder': 'Write your message here...',
+                'contact.messageError': 'Message is required',
+                'contact.submit': 'Send Message',
+                'contact.infoTitle': 'Contact Information',
+                'contact.infoAddressTitle': 'Address',
+                'contact.infoAddress': 'Al-Qasr Al-Aini Street, Downtown, Cairo',
+                'contact.infoPhoneTitle': 'Phone',
+                'contact.infoEmailTitle': 'Email',
+                'contact.infoHoursTitle': 'Working Hours',
+                'contact.infoHours': '7:00 AM – 11:00 PM (Daily)',
+                'contact.socialTitle': 'Follow Us',
+                'footer.tagline': 'Coffee with a Warm Hug',
+                'footer.address': 'Downtown, Cairo',
+                'footer.linksTitle': 'Quick Links',
+                'footer.supportTitle': 'Support',
+                'footer.socialTitle': 'Follow Us',
+                'footer.copyright': '© 2026 The Cozy Cup. All Rights Reserved.',
+                'footer.made': 'Made with Love ☕',
+                'cart.title': '🛒 Shopping Cart',
+                'cart.total': 'Total',
+                'cart.checkout': 'Checkout',
+                'cart.empty': 'Your cart is empty',
+                'cart.added': 'Added to cart',
+                'cart.removed': 'Removed from cart',
+                'cart.updated': 'Quantity updated',
+                'form.success': 'Submitted successfully!',
+                'form.error': 'Please fill in all required fields',
+                'reservation.success': 'Your table has been booked successfully! We\'ll be waiting for you.',
+                'delivery.success': 'Delivery order received! We\'ll contact you shortly.',
+                'contact.success': 'Your message has been sent! We\'ll get back to you soon.',
+                'newsletter.success': 'Successfully subscribed to the newsletter!',
+            }
+        };
+
+        // ============================================================
+        // 3. STATE
+        // ============================================================
+        let currentLang = localStorage.getItem('cozy-lang') || 'ar';
+        let currentTheme = localStorage.getItem('cozy-theme') || 'dark';
+        let currentPage = 'home';
+        let currentFilter = 'all';
+        let searchTerm = '';
+        let cart = JSON.parse(localStorage.getItem('cozy-cart')) || [];
+
+        // ============================================================
+        // 4. DOM REFS
+        // ============================================================
+        const $ = (sel, ctx = document) => ctx.querySelector(sel);
+        const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+        const toast = $('#toast');
+        const toastMsg = $('#toastMessage');
+
+        // ============================================================
+        // 5. TOAST
+        // ============================================================
+        function showToast(msg, type = 'success') {
+            toastMsg.textContent = msg;
+            toast.className = `toast ${type}`;
+            setTimeout(() => toast.classList.add('show'), 50);
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+
+        // ============================================================
+        // 6. LANGUAGE
+        // ============================================================
+        function getText(key) {
+            return TRANSLATIONS[currentLang]?.[key] || key;
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('cozy-lang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langLabel').textContent = lang.toUpperCase();
+            applyTranslations();
+            renderAll();
+        }
+
+        function applyTranslations() {
+            $$('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                el.textContent = getText(key);
+            });
+            $$('[data-i18n-placeholder]').forEach(el => {
+                const key = el.dataset.i18nPlaceholder;
+                el.placeholder = getText(key);
+            });
+            const cartTitle = document.getElementById('cartTitle');
+            if (cartTitle) cartTitle.textContent = getText('cart.title');
+            const totalLabel = document.getElementById('totalLabel');
+            if (totalLabel) totalLabel.textContent = getText('cart.total');
+            const checkoutLabel = document.getElementById('checkoutLabel');
+            if (checkoutLabel) checkoutLabel.textContent = getText('cart.checkout');
+        }
+
+        function toggleLang() {
+            setLang(currentLang === 'ar' ? 'en' : 'ar');
+        }
+
+        // ============================================================
+        // 7. THEME
+        // ============================================================
+        function setTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('cozy-theme', theme);
+            document.documentElement.setAttribute('data-theme', theme);
+            const icon = document.getElementById('themeIcon');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        function toggleTheme() {
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        // ============================================================
+        // 8. NAVIGATION (SPA)
+        // ============================================================
+        function navigateTo(page) {
+            document.getElementById('mobileMenu').classList.remove('open');
+
+            $$('.page-section').forEach(el => el.classList.remove('active'));
+
+            const target = document.getElementById(`page-${page}`);
+            if (target) target.classList.add('active');
+
+            $$('.nav-link').forEach(el => {
+                el.classList.toggle('active', el.dataset.page === page);
+            });
+
+            currentPage = page;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (window.AOS) {
+                setTimeout(() => AOS.refresh(), 100);
+            }
+
+            if (page === 'menu') renderMenu();
+            if (page === 'home') renderPopular();
+            if (page === 'delivery') renderDeliverySummary();
+            updateCartUI();
+        }
+
+        // ============================================================
+        // 9. CART
+        // ============================================================
+        function saveCart() {
+            localStorage.setItem('cozy-cart', JSON.stringify(cart));
+        }
+
+        function addToCart(productId) {
+            const product = MENU_DATA.products.find(p => p.id === productId);
+            if (!product) return;
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            saveCart();
+            updateCartUI();
+            showToast(getText('cart.added'));
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+            showToast(getText('cart.removed'));
+        }
+
+        function updateQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            const newQty = item.qty + delta;
+            if (newQty <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+            item.qty = newQty;
+            saveCart();
+            updateCartUI();
+        }
+
+        function getCartTotal() {
+            return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        }
+
+        function getCartCount() {
+            return cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+
+        function updateCartUI() {
+            const count = getCartCount();
+            document.getElementById('cartCount').textContent = count;
+            renderCartItems();
+            const total = getCartTotal();
+            document.getElementById('cartTotalPrice').innerHTML = `${total} <small>ج.م</small>`;
+            if (currentPage === 'delivery') renderDeliverySummary();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItemsContainer');
+            if (!cart.length) {
+                container.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>${getText('cart.empty')}</p>
+                    </div>
+                `;
+                return;
+            }
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name[currentLang]}" />
+                    <div class="cart-item-info">
+                        <h5>${item.name[currentLang]}</h5>
+                        <div class="price-sm">${item.price} <small>ج.م</small></div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button onclick="updateQty(${item.id}, -1)">−</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateQty(${item.id}, 1)">+</button>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            const drawer = document.getElementById('cartDrawer');
+            overlay.classList.toggle('open');
+            drawer.classList.toggle('open');
+            document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+            renderCartItems();
+        }
+
+        // ============================================================
+        // 10. RENDER: POPULAR (HOME)
+        // ============================================================
+        function renderPopular() {
+            const grid = document.getElementById('popularGrid');
+            const popular = MENU_DATA.products.slice(0, 4);
+            grid.innerHTML = popular.map(p => `
+                <div class="product-card" data-aos="fade-up" data-aos-delay="${popular.indexOf(p) * 100}">
+                    <img src="${p.image}" alt="${p.name[currentLang]}" loading="lazy" />
+                    <div class="product-body">
+                        <h4>${p.name[currentLang]}</h4>
+                        <div class="price">${p.price} <small>ج.م</small></div>
+                        <div class="desc">${p.description[currentLang]}</div>
+                        <button class="btn-primary btn-add justify-center" onclick="addToCart(${p.id})">
+                            <i class="fas fa-plus"></i> ${getText('cart.added')}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            if (window.AOS) AOS.refresh();
+        }
+
+        // ============================================================
+        // 11. RENDER: MENU (with search)
+        // ============================================================
+        function renderMenu() {
+            // Filter tabs
+            const tabsContainer = document.getElementById('filterTabs');
+            tabsContainer.innerHTML = MENU_DATA.categories.map(cat => `
+                <button class="filter-tab ${currentFilter === cat.id ? 'active' : ''}" data-category="${cat.id}">
+                    ${cat.name[currentLang]}
+                </button>
+            `).join('');
+
+            // Filter products
+            let filtered = MENU_DATA.products;
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(p => p.category === currentFilter);
+            }
+            // Search
+            if (searchTerm.trim()) {
+                const term = searchTerm.trim().toLowerCase();
+                filtered = filtered.filter(p =>
+                    p.name.ar.toLowerCase().includes(term) ||
+                    p.name.en.toLowerCase().includes(term)
+                );
+            }
+
+            const grid = document.getElementById('menuGrid');
+            if (!filtered.length) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-coffee-light">
+                        <i class="fas fa-mug-hot text-4xl block mb-3 opacity-40"></i>
+                        <p>${currentLang === 'ar' ? 'لا توجد منتجات تطابق البحث' : 'No products match your search'}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card" data-aos="fade-up" data-aos-delay="${filtered.indexOf(p) * 50}">
+                    <img src="${p.image}" alt="${p.name[currentLang]}" loading="lazy" />
+                    <div class="product-body">
+                        <h4>${p.name[currentLang]}</h4>
+                        <div class="price">${p.price} <small>ج.م</small></div>
+                        <div class="desc">${p.description[currentLang]}</div>
+                        <button class="btn-primary btn-add justify-center" onclick="addToCart(${p.id})">
+                            <i class="fas fa-plus"></i> ${getText('cart.added')}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Filter click handlers
+            $$('.filter-tab').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    currentFilter = this.dataset.category;
+                    renderMenu();
+                });
+            });
+
+            if (window.AOS) AOS.refresh();
+        }
+
+        // ============================================================
+        // 12. RENDER: DELIVERY SUMMARY
+        // ============================================================
+        function renderDeliverySummary() {
+            const container = document.getElementById('deliveryCartSummary');
+            if (!container) return;
+            if (!cart.length) {
+                container.innerHTML = `<p class="text-coffee-light text-sm">${getText('cart.empty')}</p>`;
+                document.getElementById('deliveryTotal').innerHTML = '0 <small>ج.م</small>';
+                return;
+            }
+            container.innerHTML = cart.map(item => `
+                <div class="flex justify-between text-sm py-1 border-b border-[var(--border-color)]">
+                    <span>${item.name[currentLang]} × ${item.qty}</span>
+                    <span>${item.price * item.qty} <small>ج.م</small></span>
+                </div>
+            `).join('');
+            document.getElementById('deliveryTotal').innerHTML = `${getCartTotal()} <small>ج.م</small>`;
+        }
+
+        // ============================================================
+        // 13. RENDER ALL
+        // ============================================================
+        function renderAll() {
+            applyTranslations();
+            if (currentPage === 'home') renderPopular();
+            if (currentPage === 'menu') renderMenu();
+            if (currentPage === 'delivery') renderDeliverySummary();
+            updateCartUI();
+            if (window.AOS) AOS.refresh();
+        }
+
+        // ============================================================
+        // 14. FORMS
+        // ============================================================
+        function validateForm(form, fields) {
+            let valid = true;
+            fields.forEach(({ id, errorId }) => {
+                const input = document.getElementById(id);
+                const error = document.getElementById(errorId);
+                if (!input.value.trim()) {
+                    input.classList.add('error');
+                    error.classList.add('show');
+                    valid = false;
+                } else {
+                    input.classList.remove('error');
+                    error.classList.remove('show');
+                }
+            });
+            return valid;
+        }
+
+        // Reservation
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fields = [
+                { id: 'resName', errorId: 'resNameError' },
+                { id: 'resPhone', errorId: 'resPhoneError' },
+                { id: 'resDate', errorId: 'resDateError' },
+                { id: 'resTime', errorId: 'resTimeError' },
+                { id: 'resGuests', errorId: 'resGuestsError' },
+            ];
+            if (validateForm(this, fields)) {
+                const data = {
+                    name: document.getElementById('resName').value,
+                    phone: document.getElementById('resPhone').value,
+                    date: document.getElementById('resDate').value,
+                    time: document.getElementById('resTime').value,
+                    guests: document.getElementById('resGuests').value,
+                    branch: document.getElementById('resBranch').value,
+                    notes: document.getElementById('resNotes').value,
+                };
+                localStorage.setItem('cozy-reservation', JSON.stringify(data));
+                showToast(getText('reservation.success'));
+                this.reset();
+            } else {
+                showToast(getText('form.error'), 'error');
+            }
+        });
+
+        // Delivery
+        document.getElementById('deliveryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!cart.length) {
+                showToast(currentLang === 'ar' ? 'أضف منتجات إلى السلة أولاً' : 'Add items to cart first', 'error');
+                return;
+            }
+            const fields = [
+                { id: 'delName', errorId: 'delNameError' },
+                { id: 'delPhone', errorId: 'delPhoneError' },
+                { id: 'delAddress', errorId: 'delAddressError' },
+            ];
+            if (validateForm(this, fields)) {
+                const data = {
+                    name: document.getElementById('delName').value,
+                    phone: document.getElementById('delPhone').value,
+                    address: document.getElementById('delAddress').value,
+                    notes: document.getElementById('delNotes').value,
+                    items: cart,
+                    total: getCartTotal(),
+                };
+                localStorage.setItem('cozy-delivery', JSON.stringify(data));
+                showToast(getText('delivery.success'));
+                cart = [];
+                saveCart();
+                updateCartUI();
+                this.reset();
+                renderDeliverySummary();
+            } else {
+                showToast(getText('form.error'), 'error');
+            }
+        });
+
+        // Contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fields = [
+                { id: 'contactName', errorId: 'contactNameError' },
+                { id: 'contactEmail', errorId: 'contactEmailError' },
+                { id: 'contactSubject', errorId: 'contactSubjectError' },
+                { id: 'contactMessage', errorId: 'contactMessageError' },
+            ];
+            if (validateForm(this, fields)) {
+                const data = {
+                    name: document.getElementById('contactName').value,
+                    email: document.getElementById('contactEmail').value,
+                    subject: document.getElementById('contactSubject').value,
+                    message: document.getElementById('contactMessage').value,
+                };
+                localStorage.setItem('cozy-contact', JSON.stringify(data));
+                showToast(getText('contact.success'));
+                this.reset();
+            } else {
+                showToast(getText('form.error'), 'error');
+            }
+        });
+
+        // Newsletter
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail');
+            if (email.value.trim()) {
+                showToast(getText('newsletter.success'));
+                email.value = '';
+            } else {
+                showToast(getText('form.error'), 'error');
+            }
+        });
+
+        // ============================================================
+        // 15. SEARCH (Menu)
+        // ============================================================
+        const searchInput = document.getElementById('menuSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                searchTerm = this.value;
+                if (currentPage === 'menu') renderMenu();
+            });
+        }
+
+        // ============================================================
+        // 16. SCROLL TO TOP
+        // ============================================================
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        // 17. EVENT BINDING
+        // ============================================================
+
+        // Language toggle
+        document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+        // Navigation (delegated)
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('[data-page]');
+            if (link) {
+                e.preventDefault();
+                const page = link.dataset.page;
+                if (page) navigateTo(page);
+            }
+        });
+
+        // Cart toggle
+        document.getElementById('cartOpenBtn').addEventListener('click', toggleCart);
+        document.getElementById('cartCloseBtn').addEventListener('click', toggleCart);
+        document.getElementById('cartOverlay').addEventListener('click', toggleCart);
+
+        // Mobile toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('navbar-scrolled', window.scrollY > 30);
+        });
+
+        // Keyboard: Escape to close cart
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const overlay = document.getElementById('cartOverlay');
+                if (overlay.classList.contains('open')) toggleCart();
+            }
+        });
+
+        // ============================================================
+        // 18. CHECKOUT BUTTON
+        // ============================================================
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            if (!cart.length) {
+                showToast(getText('cart.empty'), 'error');
+                return;
+            }
+            toggleCart();
+            navigateTo('delivery');
+            setTimeout(renderDeliverySummary, 300);
+        });
+
+        // ============================================================
+        // 19. INIT
+        // ============================================================
+        function init() {
+            // Set language
+            setLang(currentLang);
+            // Set theme
+            setTheme(currentTheme);
+
+            // Init AOS
+            AOS.init({
+                duration: 600,
+                once: true,
+                offset: 40,
+            });
+
+            // Show home page
+            navigateTo('home');
+            renderAll();
+
+            console.log('☕ The Cozy Cup — Dark Mode Ready!');
+            console.log(`📍 Language: ${currentLang}, Theme: ${currentTheme}, Cart: ${cart.length} items`);
+        }
+
+        // Expose functions to global scope
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.updateQty = updateQty;
+        window.toggleCart = toggleCart;
+        window.navigateTo = navigateTo;
+        window.toggleLang = toggleLang;
+        window.toggleTheme = toggleTheme;
+
+        // Go!
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+</body>
+</html>
